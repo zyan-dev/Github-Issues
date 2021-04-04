@@ -3,7 +3,7 @@ import {ActivityIndicator, View, StyleSheet} from 'react-native';
 
 const Loader: React.FC<any> = ({props}) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="loader">
       <ActivityIndicator {...props} />
     </View>
   );

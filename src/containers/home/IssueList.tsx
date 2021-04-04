@@ -58,7 +58,7 @@ const IssueListScreen: React.FC<IssueListScreenProps> = ({route}) => {
   const renderIssueItem = (item: any) => {
     const issue = item.item;
     return (
-      <View style={styles.issueItem}>
+      <View style={styles.issueItem} testID="issue-item">
         <View style={styles.avatarView}>
           <FastImage
             style={styles.avatar}
@@ -107,6 +107,7 @@ const IssueListScreen: React.FC<IssueListScreenProps> = ({route}) => {
       {issueError.length > 0 && <Text style={styles.error}>{issueError}</Text>}
       {issueError.length === 0 && (
         <FlatList
+          testID="issue-list"
           data={issues.filter(i =>
             i.title.toLowerCase().includes(searchText.toLowerCase()),
           )}

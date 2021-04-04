@@ -53,7 +53,9 @@ const RepositoryListScreen: React.FC<RepositoryListScreenProps> = () => {
               }}
               resizeMode={FastImage.resizeMode.cover}
             />
-            <Text style={styles.name}>{repo.owner.login}</Text>
+            <Text style={styles.name} testID="repo-owner-id">
+              {repo.owner.login}
+            </Text>
             <Text style={styles.issueText}>Issues: {repo.open_issues}</Text>
           </View>
           <Text style={styles.repoName}>{repo.name}</Text>
@@ -73,11 +75,17 @@ const RepositoryListScreen: React.FC<RepositoryListScreenProps> = () => {
           width={dySize(270)}
           style={{marginRight: 5}}
         />
-        <Button width={dySize(80)} title="Search" onPress={onSubmitOrg} />
+        <Button
+          width={dySize(80)}
+          title="Search"
+          onPress={onSubmitOrg}
+          testID="organization-submit"
+        />
       </View>
       {repoError.length > 0 && <Text style={styles.error}>{repoError}</Text>}
       {submitted && repoError.length === 0 && (
         <FlatList
+          testID="repository-list"
           data={repositories}
           renderItem={renderRepositoryItem}
           keyExtractor={i => i.id.toString()}
@@ -86,7 +94,6 @@ const RepositoryListScreen: React.FC<RepositoryListScreenProps> = () => {
           }
         />
       )}
-
       {loading && <Loader />}
     </Container>
   );
